@@ -1,10 +1,5 @@
-
-
+<?php session_start(); ?>
 <?php require_once('connection.php'); ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,47 +56,51 @@
                             $username = "root";
                             $password = "";
                             $dbname = "kottulk";
-                            
+
                             // Create connection
                             $conn = new mysqli($servername, $username, $password, $dbname);
                             // Check connection
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
-                            } 
-                            
-                            $result = mysqli_query($conn,"SELECT * FROM product");
-                            
-                            
+                            }
+
+                            $result = mysqli_query($conn,"SELECT * FROM orderdetail");
+
+
                             echo '<table class="table table-hover table-dark">';
                             echo '<thead>';
                             echo '<tr>';
                             echo '<th>Number</th>';
-                            echo '<th>Selected Item</th>';                    
+                            echo '<th>Selected Item</th>';
                             echo '<th>Price</th>';
                             echo '<th>Edit</th>';
                             echo '<th>Delete</th>';
                             echo '</tr>';
                             echo '</thead>';
-                            
+
                             while($row = mysqli_fetch_array($result))
                             {
 
+                            $productId = $row['product_productId'];
+                            $result1 = mysqli_query($conn, "SELECT name FROM product WHERE productId='{$productId}'");
+                            $newrow = mysqli_fetch_array($result1);
+
                             echo "<tr>";
-                            echo "<td >" . $row['productId'] . "</td>";
-                            echo "<td >" . $row['name'] . "</td>";
+                            echo "<td >" . $row['orderDetailId'] . "</td>";
+                            echo "<td >" . $newrow['name'] . "</td>";
                             echo "<td>" . $row['amount'] . "</td>";
-                           
+
                             echo "<td><input class='btn btn-success'  type='submit' formaction='ProcessComplete.php' formmethod='post' value='Edit'/></td>";
-                            echo "<td><input class='btn btn-primary'  type='submit' formaction='ProcessComplete.php' formmethod='post' value='Delete'/></td>"; 
+                            echo "<td><input class='btn btn-primary'  type='submit' formaction='ProcessComplete.php' formmethod='post' value='Delete'/></td>";
                             echo "</tr>";
-                            
-                            
+
+
                             }
                             echo "</table>";
-                            
+
                             mysqli_close($conn);
                             ?>
-                    
+
                 </div>
                 <br>
             </div>
@@ -110,7 +109,7 @@
                     <div>
                         <button href="" type="button" class="btn btn-danger btn-chk">Checkout</button>
                     </div>
-                    
+
 
                     <!-- image line -->
                     <div class="row img-row">

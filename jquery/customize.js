@@ -23,7 +23,7 @@ $(document).ready(function () {
                 data.forEach(element => {
 
                     if (element.type == 'carb') {
-                        $('#exampleFormControlSelect1').append('<option value="' + element.amount + '">' + element.name + '</option>')
+                        $('#exampleFormControlSelect1').append('<option value="' + element.amount + '" data-id="'+element.product_productId+'">' + element.name + '</option>')
                     } else if (element.type == 'vege') {
                         $('#vege').append(
                             "<div class='col-sm-6'><div class='form-check form-pad'> " +
@@ -64,7 +64,7 @@ $(document).ready(function () {
             total -= parseFloat(vegAmount);
         }
         $('#total').val(parseFloat(total).toFixed(2));
-        
+
     });
 
     $('#meat').on('change', '#meat', function () {
@@ -76,9 +76,8 @@ $(document).ready(function () {
             total -= parseFloat(meatAmount);
         }
         $('#total').val(parseFloat(total).toFixed(2));
-        
+
     });
-    
+
 
 });
-
