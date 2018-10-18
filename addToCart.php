@@ -4,7 +4,7 @@
   if (isset($_POST['submit'])) {
     $qty = $_POST['qty'];
     $total = $_POST['total'];
-
+    $productId = $_POST['selectedCarb'];
     //$userId=3;
     if (isset($_SESSION['id'])) {
       $userId = $_SESSION['id'];
@@ -35,7 +35,7 @@
     $result3 = mysqli_query($connection, $query3);
     if ($result3) {
       $query4 = "INSERT INTO orderdetail(quantity, amount,order_orderId,order_user_userId,order_address, product_productId)
-                  VALUES ('{$qty}','{$total}','{$orderId}','{$userId}','{$address}',6)";
+                  VALUES ('{$qty}','{$total}','{$orderId}','{$userId}','{$address}','{$productId}')";
       $result4 = mysqli_query($connection, $query4);
       if ($result4) {
         $_SESSION['message'] = 'Item added Successfully';

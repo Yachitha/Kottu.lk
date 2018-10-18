@@ -84,6 +84,7 @@
                                         <select class="form-control" id="exampleFormControlSelect1" name="carb">
                                            <option value="0">Select Carb</option>
                                         </select>
+                                        <input type="hidden" name="selectedCarb" value="" id="selectedCarb">
                                     </div>
                                 </div>
                             </div>

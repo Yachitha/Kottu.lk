@@ -79,5 +79,8 @@ $(document).ready(function () {
 
     });
 
-
+    $('select#exampleFormControlSelect1').change(function() {
+        var id = $('select#exampleFormControlSelect1').find(':selected').data('id');
+        $('#selectedCarb').val(id);
+    });
 });
